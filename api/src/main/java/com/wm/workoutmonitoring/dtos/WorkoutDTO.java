@@ -1,8 +1,22 @@
 package com.wm.workoutmonitoring.dtos;
 
+import com.wm.workoutmonitoring.models.Exercise;
+
+import java.util.List;
+
 public class WorkoutDTO {
+    private String accountId;
     private String name;
     private String description;
+    private List<Exercise> exerciseList;
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     public String getName() {
         return name;
@@ -18,5 +32,13 @@ public class WorkoutDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 }

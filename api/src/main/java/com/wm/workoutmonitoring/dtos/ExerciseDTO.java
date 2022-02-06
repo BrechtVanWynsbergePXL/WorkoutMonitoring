@@ -1,6 +1,7 @@
 package com.wm.workoutmonitoring.dtos;
 
 public class ExerciseDTO {
+    private String workoutId;
     private String name;
     private String description;
     private int sets;
@@ -8,6 +9,14 @@ public class ExerciseDTO {
     private double weight;
     private double rpe;
     private String baseExercise;
+
+    public String getWorkoutId() {
+        return workoutId;
+    }
+
+    public void setWorkoutId(String workoutId) {
+        this.workoutId = workoutId;
+    }
 
     public String getName() {
         return name;

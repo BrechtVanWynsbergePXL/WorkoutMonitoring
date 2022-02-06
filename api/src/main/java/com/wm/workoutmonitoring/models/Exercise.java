@@ -11,6 +11,7 @@ import java.util.UUID;
 public class Exercise {
     @Id
     private String id;
+    private String workoutId;
     private String name;
     private String description;
     private int sets;
@@ -19,12 +20,24 @@ public class Exercise {
     private double rpe;
     private BaseExercise baseExercise;
 
+    public Exercise() {
+
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getWorkoutId() {
+        return workoutId;
+    }
+
+    public void setWorkoutId(String workoutId) {
+        this.workoutId = workoutId;
     }
 
     public String getName() {
@@ -85,7 +98,7 @@ public class Exercise {
 
     @PrePersist
     public void prePersist() {
-        if(getId() == null){
+        if (getId() == null) {
             setId(UUID.randomUUID().toString());
         }
     }

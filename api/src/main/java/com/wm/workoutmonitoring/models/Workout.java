@@ -9,10 +9,15 @@ import java.util.UUID;
 public class Workout {
     @Id
     private String id;
+    private String accountId;
     private String name;
     private String description;
     @ElementCollection
     private List<Exercise> exerciseList;
+
+    public Workout() {
+
+    }
 
     public String getId() {
         return id;
@@ -20,6 +25,14 @@ public class Workout {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {
@@ -48,7 +61,7 @@ public class Workout {
 
     @PrePersist
     public void prePersist() {
-        if(getId() == null){
+        if (getId() == null) {
             setId(UUID.randomUUID().toString());
         }
     }

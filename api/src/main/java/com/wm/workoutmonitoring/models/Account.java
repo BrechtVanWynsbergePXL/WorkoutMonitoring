@@ -20,6 +20,9 @@ public class Account {
     @ElementCollection
     private List<Workout> workoutList;
 
+    public Account() {
+    }
+
     public String getId() {
         return id;
     }

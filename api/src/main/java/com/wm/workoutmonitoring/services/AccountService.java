@@ -47,13 +47,8 @@ public class AccountService {
         account.setName(accountDTO.getName());
         account.setEmail(accountDTO.getEmail());
         account.setDateOfBirth(accountDTO.getDateOfBirth());
-
-        try{
-            account.setGender(genderService.determineGender(accountDTO.getGender()));
-        } catch (GenderException e){
-            System.out.println(e.getMessage());
-            account.setGender(Gender.UNDISCLOSED);
-        }
+        account.setGender(genderService.determineGender(accountDTO.getGender()));
+        account.setWorkoutList(new ArrayList<>());
 
         try {
             account.setPassword(passwordService.hashPassword(accountDTO.getPassword()));
@@ -61,8 +56,10 @@ public class AccountService {
             return null;
         }
 
-        account.setWorkoutList(new ArrayList<>());
+        return accountRepository.save(account);
+    }
 
+    public Account update(Account account){
         return accountRepository.save(account);
     }
 

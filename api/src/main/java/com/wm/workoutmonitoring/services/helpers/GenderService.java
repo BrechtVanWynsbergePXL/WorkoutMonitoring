@@ -6,15 +6,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GenderService {
-    public Gender determineGender(String gender) throws GenderException {
-        if(gender.equals("M") || gender.equals("Male") ||
-                gender.equals("m") || gender.equals("male")){
-            return Gender.MALE;
-        } else if (gender.equals("F") || gender.equals("Female") ||
-                gender.equals("f") || gender.equals("female")){
-            return Gender.FEMALE;
-        } else {
-            throw new GenderException("Gender cannot be determined with given input");
+    public Gender determineGender(String gender) {
+        switch (gender){
+            case "M":
+            case "Male":
+            case "m":
+            case "male":
+                return Gender.MALE;
+            case "F":
+            case "Female":
+            case "f":
+            case "female":
+                return Gender.FEMALE;
+            default:
+                return Gender.UNDISCLOSED;
         }
     }
 }

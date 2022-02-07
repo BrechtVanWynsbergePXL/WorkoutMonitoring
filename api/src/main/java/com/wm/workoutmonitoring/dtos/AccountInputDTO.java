@@ -2,7 +2,7 @@ package com.wm.workoutmonitoring.dtos;
 
 import java.util.Date;
 
-public class AccountDTO {
+public class AccountInputDTO {
     private String name;
     private String password;
     private String email;

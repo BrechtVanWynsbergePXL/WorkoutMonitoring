@@ -46,7 +46,7 @@ public class WorkoutService {
         return workoutRepository.save(workout);
     }
 
-    public String deleteById(String id) {
+    public String deleteWorkoutById(String id) {
         workoutRepository.deleteById(id);
         return "Workout successfully deleted.";
     }

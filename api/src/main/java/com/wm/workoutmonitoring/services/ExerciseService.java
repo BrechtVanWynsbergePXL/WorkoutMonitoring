@@ -80,6 +80,11 @@ public class ExerciseService {
         throw new ExerciseNotFoundException("Exercise could not be found.");
     }
 
+    public String deleteExerciseById(String id) {
+        exerciseRepository.deleteById(id);
+        return "Workout successfully deleted.";
+    }
+
     private Exercise mapExerciseDTOtoExercise(BaseExercise exercise) {
         exercise.setWorkoutId(exercise.getWorkoutId());
         exercise.setName(exercise.getName());

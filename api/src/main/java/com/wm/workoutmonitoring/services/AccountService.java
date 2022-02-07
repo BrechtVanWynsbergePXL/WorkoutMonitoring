@@ -1,10 +1,8 @@
 package com.wm.workoutmonitoring.services;
 
-import com.wm.workoutmonitoring.dtos.AccountDTO;
-import com.wm.workoutmonitoring.exceptions.GenderException;
+import com.wm.workoutmonitoring.dtos.AccountInputDTO;
 import com.wm.workoutmonitoring.exceptions.PasswordException;
 import com.wm.workoutmonitoring.models.Account;
-import com.wm.workoutmonitoring.models.Gender;
 import com.wm.workoutmonitoring.repositories.AccountRepository;
 import com.wm.workoutmonitoring.services.helpers.GenderService;
 import com.wm.workoutmonitoring.services.helpers.PasswordService;
@@ -42,16 +40,16 @@ public class AccountService {
         return account.orElse(null);
     }
 
-    public Account addAccount(AccountDTO accountDTO) {
+    public Account addAccount(AccountInputDTO accountInputDTO) {
         Account account = new Account();
-        account.setName(accountDTO.getName());
-        account.setEmail(accountDTO.getEmail());
-        account.setDateOfBirth(accountDTO.getDateOfBirth());
-        account.setGender(genderService.determineGender(accountDTO.getGender()));
+        account.setName(accountInputDTO.getName());
+        account.setEmail(accountInputDTO.getEmail());
+        account.setDateOfBirth(accountInputDTO.getDateOfBirth());
+        account.setGender(genderService.determineGender(accountInputDTO.getGender()));
         account.setWorkoutList(new ArrayList<>());
 
         try {
-            account.setPassword(passwordService.hashPassword(accountDTO.getPassword()));
+            account.setPassword(passwordService.hashPassword(accountInputDTO.getPassword()));
         } catch (PasswordException e) {
             return null;
         }
@@ -63,7 +61,7 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public String deleteAccount(String id){
+    public String deleteAccountById(String id){
         accountRepository.deleteById(id);
         return "Account successfully deleted.";
     }

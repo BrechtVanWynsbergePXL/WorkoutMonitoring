@@ -1,6 +1,6 @@
 package com.wm.workoutmonitoring.services;
 
-import com.wm.workoutmonitoring.dtos.ExerciseDTO;
+import com.wm.workoutmonitoring.dtos.ExerciseInputDTO;
 import com.wm.workoutmonitoring.exceptions.ExerciseNotFoundException;
 import com.wm.workoutmonitoring.models.Account;
 import com.wm.workoutmonitoring.models.Exercise;
@@ -46,13 +46,13 @@ public class ExerciseService {
         return exercises;
     }
 
-    public Exercise addExercise(ExerciseDTO exerciseDTO) {
+    public Exercise addExercise(ExerciseInputDTO exerciseInputDTO) {
         List<Workout> workouts;
 
-        Workout workout = workoutService.findOneById(exerciseDTO.getWorkoutId());
+        Workout workout = workoutService.findOneById(exerciseInputDTO.getWorkoutId());
 
-        Exercise exercise = this.mapExerciseDTOtoExercise(exerciseDTO);
-        exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseDTO.getExerciseType()));
+        Exercise exercise = this.mapExerciseDTOtoExercise(exerciseInputDTO);
+        exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseInputDTO.getExerciseType()));
         exerciseRepository.save(exercise);
 
         List<Exercise> exercises = workout.getExerciseList();
@@ -63,12 +63,12 @@ public class ExerciseService {
         return exercise;
     }
 
-    public Exercise updateExercise(ExerciseDTO exerciseDTO) throws ExerciseNotFoundException {
-        Optional<Exercise> exerciseToUpdate = exerciseRepository.findById(exerciseDTO.getId());
+    public Exercise updateExercise(ExerciseInputDTO exerciseInputDTO) throws ExerciseNotFoundException {
+        Optional<Exercise> exerciseToUpdate = exerciseRepository.findById(exerciseInputDTO.getId());
 
         if(exerciseToUpdate.isPresent()){
-            Exercise exercise = this.mapExerciseDTOtoExercise(exerciseDTO);
-            exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseDTO.getExerciseType()));
+            Exercise exercise = this.mapExerciseDTOtoExercise(exerciseInputDTO);
+            exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseInputDTO.getExerciseType()));
 
             return exerciseRepository.save(exercise);
         }
@@ -80,16 +80,16 @@ public class ExerciseService {
         return "Workout successfully deleted.";
     }
 
-    private Exercise mapExerciseDTOtoExercise(ExerciseDTO exerciseDTO) {
+    private Exercise mapExerciseDTOtoExercise(ExerciseInputDTO exerciseInputDTO) {
         Exercise exercise = new Exercise();
 
-        exercise.setWorkoutId(exerciseDTO.getWorkoutId());
-        exercise.setName(exerciseDTO.getName());
-        exercise.setDescription(exerciseDTO.getDescription());
-        exercise.setSets(exerciseDTO.getSets());
-        exercise.setReps(exerciseDTO.getReps());
-        exercise.setWeight(exerciseDTO.getWeight());
-        exercise.setRpe(exerciseDTO.getRpe());
+        exercise.setWorkoutId(exerciseInputDTO.getWorkoutId());
+        exercise.setName(exerciseInputDTO.getName());
+        exercise.setDescription(exerciseInputDTO.getDescription());
+        exercise.setSets(exerciseInputDTO.getSets());
+        exercise.setReps(exerciseInputDTO.getReps());
+        exercise.setWeight(exerciseInputDTO.getWeight());
+        exercise.setRpe(exerciseInputDTO.getRpe());
 
         return exercise;
     }

@@ -16,6 +16,7 @@ public class Account {
     private String password;
     private String email;
     private Date dateOfBirth;
+    private double bodyWeight;
     private Gender gender;
     @ElementCollection
     private List<Workout> workoutList;
@@ -61,6 +62,14 @@ public class Account {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public double getBodyWeight() {
+        return bodyWeight;
+    }
+
+    public void setBodyWeight(double bodyWeight) {
+        this.bodyWeight = bodyWeight;
     }
 
     public Gender getGender() {

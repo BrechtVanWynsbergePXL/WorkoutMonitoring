@@ -1,6 +1,7 @@
 package com.wm.workoutmonitoring.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,9 +11,10 @@ public class Workout {
     @Id
     private String id;
     private String accountId;
+    private Date date;
     private String name;
     private String description;
-    @ElementCollection
+    @OneToMany
     private List<Exercise> exerciseList;
 
     public Workout() {
@@ -33,6 +35,14 @@ public class Workout {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getName() {

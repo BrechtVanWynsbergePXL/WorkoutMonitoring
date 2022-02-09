@@ -1,6 +1,7 @@
 package com.wm.workoutmonitoring.controllers;
 
-import com.wm.workoutmonitoring.dtos.ExerciseDTO;
+import com.wm.workoutmonitoring.dtos.ExerciseInputDTO;
+import com.wm.workoutmonitoring.dtos.ExerciseOutputDTO;
 import com.wm.workoutmonitoring.exceptions.ExerciseNotFoundException;
 import com.wm.workoutmonitoring.services.ExerciseService;
 import org.modelmapper.ModelMapper;
@@ -23,34 +24,34 @@ public class ExerciseController {
     private ModelMapper modelMapper;
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<ExerciseDTO>> getAll() {
+    public ResponseEntity<List<ExerciseOutputDTO>> getAll() {
         return new ResponseEntity<>(exerciseService.findAll()
-                .stream().map(exercise -> modelMapper.map(exercise, ExerciseDTO.class))
+                .stream().map(exercise -> modelMapper.map(exercise, ExerciseOutputDTO.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/findAllByWorkoutId/{id}")
-    public ResponseEntity<List<ExerciseDTO>> getAllByWorkoutId(@PathVariable("id") String id) {
+    public ResponseEntity<List<ExerciseOutputDTO>> getAllByWorkoutId(@PathVariable("id") String id) {
         return new ResponseEntity<>(exerciseService.findAllByWorkoutId(id)
-                .stream().map(exercise -> modelMapper.map(exercise, ExerciseDTO.class))
+                .stream().map(exercise -> modelMapper.map(exercise, ExerciseOutputDTO.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/findAllByAccountId/{id}")
-    public ResponseEntity<List<ExerciseDTO>> getAllByAccountId(@PathVariable("id") String id) {
+    public ResponseEntity<List<ExerciseOutputDTO>> getAllByAccountId(@PathVariable("id") String id) {
         return new ResponseEntity<>(exerciseService.findAllByAccountId(id)
-                .stream().map(exercise -> modelMapper.map(exercise, ExerciseDTO.class))
+                .stream().map(exercise -> modelMapper.map(exercise, ExerciseOutputDTO.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @PostMapping("/addExercise")
-    public ResponseEntity<ExerciseDTO> postExercise(@RequestBody ExerciseDTO exerciseDTO) {
-        return new ResponseEntity<>(modelMapper.map(exerciseService.addExercise(exerciseDTO), ExerciseDTO.class), HttpStatus.CREATED);
+    public ResponseEntity<ExerciseOutputDTO> postExercise(@RequestBody ExerciseInputDTO exerciseInputDTO) {
+        return new ResponseEntity<>(modelMapper.map(exerciseService.addExercise(exerciseInputDTO), ExerciseOutputDTO.class), HttpStatus.CREATED);
     }
 
     @PutMapping("/updateExercise")
-    public ResponseEntity<ExerciseDTO> putExercise(@RequestBody ExerciseDTO exerciseDTO) throws ExerciseNotFoundException {
-        return new ResponseEntity<>(modelMapper.map(exerciseService.updateExercise(exerciseDTO), ExerciseDTO.class), HttpStatus.OK);
+    public ResponseEntity<ExerciseOutputDTO> putExercise(@RequestBody ExerciseInputDTO exerciseInputDTO) throws ExerciseNotFoundException {
+        return new ResponseEntity<>(modelMapper.map(exerciseService.updateExercise(exerciseInputDTO), ExerciseOutputDTO.class), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteOneById/{id}")

@@ -1,6 +1,7 @@
 package com.wm.workoutmonitoring.controllers;
 
 import com.wm.workoutmonitoring.dtos.WorkoutDTO;
+import com.wm.workoutmonitoring.exceptions.WorkoutNotFoundException;
 import com.wm.workoutmonitoring.services.WorkoutService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class WorkoutController {
     @PostMapping("/addWorkout")
     public ResponseEntity<WorkoutDTO> postWorkout(@RequestBody WorkoutDTO workoutDTO) {
         return new ResponseEntity<>(modelMapper.map(workoutService.addWorkout(workoutDTO), WorkoutDTO.class), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updateWorkout")
+    public ResponseEntity<WorkoutDTO> putWorkout(@RequestBody WorkoutDTO workoutDTO) throws WorkoutNotFoundException {
+        return new ResponseEntity<>(modelMapper.map(workoutService.update(workoutDTO), WorkoutDTO.class), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteOneById/{id}")

@@ -18,6 +18,9 @@ public class WorkoutService {
     @Autowired
     private WorkoutRepository workoutRepository;
 
+    @Autowired
+    private AccountService accountService;
+
     public List<Workout> findAll() {
         return workoutRepository.findAll();
     }
@@ -35,11 +38,18 @@ public class WorkoutService {
     public Workout addWorkout(WorkoutDTO workoutDTO) {
         Workout workout = new Workout();
         workout.setAccountId(workoutDTO.getAccountId());
+        workout.setDate(workoutDTO.getDate());
         workout.setName(workoutDTO.getName());
         workout.setDescription(workoutDTO.getDescription());
         workout.setExerciseList(new ArrayList<>());
+        workoutRepository.save(workout);
 
-        return workoutRepository.save(workout);
+        Account account = accountService.findById(workoutDTO.getAccountId());
+        account.getWorkoutList().add(workout);
+
+        accountService.update(account);
+
+        return workout;
     }
 
     public Workout update(Workout workout) {

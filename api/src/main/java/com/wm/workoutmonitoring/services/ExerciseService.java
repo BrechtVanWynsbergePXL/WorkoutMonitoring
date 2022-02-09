@@ -3,7 +3,6 @@ package com.wm.workoutmonitoring.services;
 import com.wm.workoutmonitoring.dtos.ExerciseDTO;
 import com.wm.workoutmonitoring.exceptions.ExerciseNotFoundException;
 import com.wm.workoutmonitoring.models.Account;
-import com.wm.workoutmonitoring.models.BaseExercise;
 import com.wm.workoutmonitoring.models.Exercise;
 import com.wm.workoutmonitoring.models.Workout;
 import com.wm.workoutmonitoring.repositories.ExerciseRepository;
@@ -48,8 +47,9 @@ public class ExerciseService {
     }
 
     public Exercise addExercise(ExerciseDTO exerciseDTO) {
+        List<Workout> workouts;
+
         Workout workout = workoutService.findOneById(exerciseDTO.getWorkoutId());
-        Account account = accountService.findById(workout.getAccountId());
 
         Exercise exercise = this.mapExerciseDTOtoExercise(exerciseDTO);
         exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseDTO.getExerciseType()));
@@ -59,11 +59,6 @@ public class ExerciseService {
         exercises.add(exercise);
         workout.setExerciseList(exercises);
         workoutService.update(workout);
-
-        List<Workout> workouts = account.getWorkoutList();
-        workouts.add(workout);
-        account.setWorkoutList(workouts);
-        accountService.update(account);
 
         return exercise;
     }
@@ -85,14 +80,17 @@ public class ExerciseService {
         return "Workout successfully deleted.";
     }
 
-    private Exercise mapExerciseDTOtoExercise(BaseExercise exercise) {
-        exercise.setWorkoutId(exercise.getWorkoutId());
-        exercise.setName(exercise.getName());
-        exercise.setDescription(exercise.getDescription());
-        exercise.setSets(exercise.getSets());
-        exercise.setReps(exercise.getReps());
-        exercise.setRpe(exercise.getRpe());
+    private Exercise mapExerciseDTOtoExercise(ExerciseDTO exerciseDTO) {
+        Exercise exercise = new Exercise();
 
-        return (Exercise) exercise;
+        exercise.setWorkoutId(exerciseDTO.getWorkoutId());
+        exercise.setName(exerciseDTO.getName());
+        exercise.setDescription(exerciseDTO.getDescription());
+        exercise.setSets(exerciseDTO.getSets());
+        exercise.setReps(exerciseDTO.getReps());
+        exercise.setWeight(exerciseDTO.getWeight());
+        exercise.setRpe(exerciseDTO.getRpe());
+
+        return exercise;
     }
 }

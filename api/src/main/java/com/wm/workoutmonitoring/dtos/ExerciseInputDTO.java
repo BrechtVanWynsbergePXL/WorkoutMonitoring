@@ -1,6 +1,6 @@
 package com.wm.workoutmonitoring.dtos;
 
-public class ExerciseDTO {
+public class ExerciseInputDTO {
     private String id;
     private String workoutId;
     private String name;

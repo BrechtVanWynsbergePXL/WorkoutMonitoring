@@ -5,11 +5,20 @@ import com.wm.workoutmonitoring.models.Gender;
 import java.util.Date;
 
 public class AccountOutputDTO {
+    private String id;
     private String name;
     private String email;
     private Date dateOfBirth;
     private double bodyWeight;
     private Gender gender;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

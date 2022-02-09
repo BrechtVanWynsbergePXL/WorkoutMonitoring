@@ -6,11 +6,20 @@ import java.util.Date;
 import java.util.List;
 
 public class WorkoutDTO {
+    private String id;
     private String accountId;
     private Date date;
     private String name;
     private String description;
     private List<Exercise> exerciseList;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getAccountId() {
         return accountId;

@@ -7,6 +7,7 @@ public class AccountInputDTO {
     private String password;
     private String email;
     private Date dateOfBirth;
+    private double bodyWeight;
     private String gender;
 
     public String getName() {
@@ -39,6 +40,14 @@ public class AccountInputDTO {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public double getBodyWeight() {
+        return bodyWeight;
+    }
+
+    public void setBodyWeight(double bodyWeight) {
+        this.bodyWeight = bodyWeight;
     }
 
     public String getGender() {

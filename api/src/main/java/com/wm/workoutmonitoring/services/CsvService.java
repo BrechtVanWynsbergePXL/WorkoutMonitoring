@@ -3,6 +3,7 @@ package com.wm.workoutmonitoring.services;
 import com.wm.workoutmonitoring.models.Account;
 import com.wm.workoutmonitoring.models.Exercise;
 import com.wm.workoutmonitoring.models.Workout;
+import com.wm.workoutmonitoring.services.helpers.ExerciseTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,9 @@ public class CsvService {
 
     @Autowired
     private ExerciseService exerciseService;
+
+    @Autowired
+    private ExerciseTypeService exerciseTypeService;
 
     public List<Workout> processCsv(String id, MultipartFile multipartFile) throws IOException {
         Account account = accountService.findById(id);
@@ -110,6 +114,8 @@ public class CsvService {
         if(properties.length == 7){
             exercise.setDescription(properties[6]);
         }
+
+        exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(properties[1]));
 
         return exercise;
     }

@@ -9,12 +9,14 @@ import com.wm.workoutmonitoring.repositories.ExerciseRepository;
 import com.wm.workoutmonitoring.services.helpers.ExerciseTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Service
 public class ExerciseService {
     @Autowired
     private ExerciseRepository exerciseRepository;
@@ -47,8 +49,6 @@ public class ExerciseService {
     }
 
     public Exercise addExercise(ExerciseInputDTO exerciseInputDTO) {
-        List<Workout> workouts;
-
         Workout workout = workoutService.findOneById(exerciseInputDTO.getWorkoutId());
 
         Exercise exercise = this.mapExerciseDTOtoExercise(exerciseInputDTO);
@@ -61,6 +61,10 @@ public class ExerciseService {
         workoutService.update(workout);
 
         return exercise;
+    }
+
+    public Exercise updateExercise(Exercise exercise){
+        return exerciseRepository.save(exercise);
     }
 
     public Exercise updateExercise(ExerciseInputDTO exerciseInputDTO) throws ExerciseNotFoundException {

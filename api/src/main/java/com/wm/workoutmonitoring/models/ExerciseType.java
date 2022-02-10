@@ -2,7 +2,7 @@ package com.wm.workoutmonitoring.models;
 
 public enum ExerciseType {
     SQUAT,
-    BENCH,
+    PRESS,
     DEADLIFT,
-    UNDEFINED
+    ACCESSORY
 }

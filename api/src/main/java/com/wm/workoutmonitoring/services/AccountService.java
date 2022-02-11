@@ -3,7 +3,6 @@ package com.wm.workoutmonitoring.services;
 import com.wm.workoutmonitoring.dtos.AccountInputDTO;
 import com.wm.workoutmonitoring.exceptions.PasswordException;
 import com.wm.workoutmonitoring.models.Account;
-import com.wm.workoutmonitoring.models.Workout;
 import com.wm.workoutmonitoring.repositories.AccountRepository;
 import com.wm.workoutmonitoring.services.helpers.GenderService;
 import com.wm.workoutmonitoring.services.helpers.PasswordService;

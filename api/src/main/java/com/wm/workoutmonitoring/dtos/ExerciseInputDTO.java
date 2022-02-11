@@ -79,7 +79,7 @@ public class ExerciseInputDTO {
         return exerciseType;
     }
 
-    public void setBaseExercise(String exerciseType) {
+    public void setExerciseType(String exerciseType) {
         this.exerciseType = exerciseType;
     }
 }

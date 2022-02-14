@@ -24,7 +24,7 @@ public class UploadWorkoutCSVController {
     private ModelMapper modelMapper;
 
     @PostMapping("/upload/{id}")
-    public ResponseEntity<List<WorkoutDTO>> processCsv(@RequestParam(value = "file")MultipartFile file, @PathVariable("id") String id) throws IOException {
+    public ResponseEntity<List<WorkoutDTO>> processCsv(@RequestParam(value = "file") MultipartFile file, @PathVariable("id") String id) throws IOException {
         return new ResponseEntity<>(csvService.processCsv(id, file)
                 .stream().map(workout -> modelMapper.map(workout, WorkoutDTO.class))
                 .collect(Collectors.toList()), HttpStatus.CREATED);

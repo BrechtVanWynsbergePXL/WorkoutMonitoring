@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface WorkoutRepository extends CrudRepository<Workout, String> {
     List<Workout> findAll();
+
     Optional<List<Workout>> findAllByAccountId(String id);
 
     @Override

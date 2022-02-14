@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface AccountRepository extends CrudRepository<Account, String> {
     List<Account> findAll();
+
     Optional<Account> findByEmail(String email);
 
     @Override

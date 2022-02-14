@@ -60,10 +60,10 @@ public class WorkoutService {
         return workoutRepository.save(workout);
     }
 
-    public Workout update(WorkoutDTO workoutDTO) throws WorkoutNotFoundException{
+    public Workout update(WorkoutDTO workoutDTO) throws WorkoutNotFoundException {
         Optional<Workout> workoutToUpdate = workoutRepository.findById(workoutDTO.getId());
 
-        if(workoutToUpdate.isPresent()){
+        if (workoutToUpdate.isPresent()) {
             Workout workout = this.mapAndCombineWorkoutDTOtoWorkout(workoutToUpdate.get(), workoutDTO);
 
             return workoutRepository.save(workout);
@@ -76,7 +76,7 @@ public class WorkoutService {
         return "Workout successfully deleted.";
     }
 
-    private Workout mapAndCombineWorkoutDTOtoWorkout(Workout workout, WorkoutDTO workoutDTO){
+    private Workout mapAndCombineWorkoutDTOtoWorkout(Workout workout, WorkoutDTO workoutDTO) {
         workout.setDate(workoutDTO.getDate());
         workout.setName(workoutDTO.getName());
         workout.setDescription(workoutDTO.getDescription());

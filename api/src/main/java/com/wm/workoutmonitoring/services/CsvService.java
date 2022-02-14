@@ -44,8 +44,8 @@ public class CsvService {
                 .lines()
                 .forEach(line -> {
                     String[] allProperties = line.split(",");
-                    if(allProperties[0].equals("\uFEFFWO") ||allProperties[0].equals("WO")){
-                        if(ref.workout != null){
+                    if (allProperties[0].equals("\uFEFFWO") || allProperties[0].equals("WO")) {
+                        if (ref.workout != null) {
                             workoutService.update(ref.workout);
                             workoutList.add(ref.workout);
                         }
@@ -78,7 +78,7 @@ public class CsvService {
         workout.setAccountId(id);
         workout.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(properties[1]));
         workout.setName(properties[2]);
-        if(properties.length > 3 && !properties[3].equals("")){
+        if (properties.length > 3 && !properties[3].equals("")) {
             workout.setDescription(properties[3]);
         } else {
             workout.setDescription("");
@@ -93,25 +93,25 @@ public class CsvService {
         exercise.setWorkoutId(id);
         exercise.setName(properties[1]);
         exercise.setSets(Integer.parseInt(properties[2]));
-        if(properties.length > 3 && !properties[3].equals("")){
+        if (properties.length > 3 && !properties[3].equals("")) {
             exercise.setReps(Integer.parseInt(properties[3]));
         } else {
             exercise.setReps(0);
         }
 
-        if(properties.length > 4 && !properties[4].equals("")){
+        if (properties.length > 4 && !properties[4].equals("")) {
             exercise.setRpe(Double.parseDouble(properties[4]));
         } else {
             exercise.setRpe(0);
         }
 
-        if(properties.length > 5 && !properties[5].equals("")){
+        if (properties.length > 5 && !properties[5].equals("")) {
             exercise.setWeight(Double.parseDouble(properties[5]));
-        }else {
+        } else {
             exercise.setWeight(0);
         }
 
-        if(properties.length == 7){
+        if (properties.length == 7) {
             exercise.setDescription(properties[6]);
         }
 

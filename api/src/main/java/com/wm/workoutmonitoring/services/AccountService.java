@@ -58,11 +58,11 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public Account update(Account account){
+    public Account update(Account account) {
         return accountRepository.save(account);
     }
 
-    public String deleteAccountById(String id){
+    public String deleteAccountById(String id) {
         accountRepository.deleteById(id);
         return "Account successfully deleted.";
     }

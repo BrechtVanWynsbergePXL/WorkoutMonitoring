@@ -9,8 +9,7 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class PasswordService {
     public String hashPassword(String password) throws PasswordException {
-        try
-        {
+        try {
             MessageDigest md = MessageDigest.getInstance("MD5");
 
             md.update(password.getBytes());

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GenderService {
     public Gender determineGender(String gender) {
-        switch (gender){
+        switch (gender) {
             case "M":
             case "Male":
             case "m":

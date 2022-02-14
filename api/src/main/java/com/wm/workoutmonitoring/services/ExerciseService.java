@@ -63,14 +63,14 @@ public class ExerciseService {
         return exercise;
     }
 
-    public Exercise updateExercise(Exercise exercise){
+    public Exercise updateExercise(Exercise exercise) {
         return exerciseRepository.save(exercise);
     }
 
     public Exercise updateExercise(ExerciseInputDTO exerciseInputDTO) throws ExerciseNotFoundException {
         Optional<Exercise> exerciseToUpdate = exerciseRepository.findById(exerciseInputDTO.getId());
 
-        if(exerciseToUpdate.isPresent()){
+        if (exerciseToUpdate.isPresent()) {
             Exercise exercise = this.mapExerciseDTOtoExercise(exerciseInputDTO);
             exercise.setBaseExercise(exerciseTypeService.determineBaseExercise(exerciseInputDTO.getExerciseType()));
 

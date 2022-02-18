@@ -84,7 +84,7 @@ public class ExerciseService {
         return "Workout successfully deleted.";
     }
 
-    private Exercise mapExerciseDTOtoExercise(ExerciseInputDTO exerciseInputDTO) {
+    public Exercise mapExerciseDTOtoExercise(ExerciseInputDTO exerciseInputDTO) {
         Exercise exercise = new Exercise();
 
         exercise.setWorkoutId(exerciseInputDTO.getWorkoutId());

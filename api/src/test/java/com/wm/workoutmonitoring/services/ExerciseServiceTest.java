@@ -37,7 +37,7 @@ public class ExerciseServiceTest {
     }
 
     @Test
-    public void findAllByIdShouldReturnListOfExercises() {
+    public void findAllByWorkoutIdShouldReturnListOfExercises() {
         List<Exercise> exerciseList = new ArrayList<>();
         exerciseList.add(new Exercise());
 

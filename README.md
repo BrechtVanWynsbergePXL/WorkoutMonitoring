@@ -12,3 +12,14 @@ Api Endpoints:
 - Desktop frontend
 - Mobile frontend
 - Feature to aggragate statistics per workout
+
+## Documentation
+### CSV upload
+    Some text
+
+### Account controller
+    Some text
+    
+### Workout controller
+
+## Screenshots

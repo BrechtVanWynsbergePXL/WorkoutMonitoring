@@ -26,7 +26,7 @@ API Endpoints:
    ### Workout controller
     Some text
     
-   ### Workout controller
+   ### Exercise controller
     Some text
     
  ## Frontend Documentation

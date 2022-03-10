@@ -18,6 +18,8 @@ API Endpoints:
 ## Documentation
  ## API Documentation
    ### CSV upload
+   This controller allows you to upload a CSV file of your workouts. This file must contain at least one fully qualified workout. It is possible to combine multiple workouts into one CSV file, but processing larger files may take some time.
+   
     Some text
     
    ### Account controller
